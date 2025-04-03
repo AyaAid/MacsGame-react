@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import './App.css';
 import useMQTT from './hooks/useMQTT';
 
@@ -22,34 +22,61 @@ function Game() {
     different: '🍌',
   };
 
-  const [differentIndex, setDifferentIndex] = useState(Math.floor(Math.random() * 3));
-  const [positions, setPositions] = useState([0, 1, 2]);
   const messages = useMQTT();
+  const [scores, setScores] = useState({ p1: 0, p2: 0 });
+  const [differentIndex, setDifferentIndex] = useState(0);
+  const positions = useMemo(() => [0, 1, 2], []);
 
-  const handleClick = () => {
-    let newDifferentIndex;
-    do {
-      newDifferentIndex = Math.floor(Math.random() * 3);
-    } while (newDifferentIndex === differentIndex);
+  const targetMap = useMemo(() => ({
+    RCV1: 0,
+    RCV2: 1,
+    RCV3: 2,
+  }), []);
 
-    setDifferentIndex(newDifferentIndex);
+  const gameMessage = messages['macs/game'];
 
-    const shuffled = [...positions].sort(() => Math.random() - 0.5);
-    setPositions(shuffled);
-  };
+useEffect(() => {
+  if (!gameMessage) return;
+
+  try {
+    const gameMsg = JSON.parse(gameMessage);
+
+    const newIndex = targetMap[gameMsg.target];
+    if (newIndex === undefined) return;
+
+    setDifferentIndex(newIndex);
+
+    if (gameMsg.isCorrect) {
+      const playerKey = gameMsg.player?.toLowerCase();
+      const score = parseInt(gameMsg.score);
+
+      if (playerKey && !isNaN(score)) {
+        setScores((prev) => ({
+          ...prev,
+          [playerKey]: prev[playerKey] + score,
+        }));
+      }
+    }
+  } catch (err) {
+    console.error('Error parsing macs/game message:', gameMessage, err);
+  }
+}, [gameMessage, targetMap]);
 
   return (
-    <div className="screen" onClick={handleClick}>
-      {positions.map((pos, i) => (
-        <div key={i} className="column">
-          <span className="icon">
-            {pos === differentIndex ? icons.different : icons.same}
-          </span>
-          <span className="score">
-            {messages[`macs/score/target1`]}
-          </span>
-        </div>
-      ))}
+    <div className="game-container">
+      <div className="scoreboard left">P1: {scores.p1} pts</div>
+
+      <div className="screen">
+        {positions.map((pos) => (
+          <div key={pos} className="column">
+            <span className="icon">
+              {pos === differentIndex ? icons.different : icons.same}
+            </span>
+          </div>
+        ))}
+      </div>
+
+      <div className="scoreboard right">P2: {scores.p2} pts</div>
     </div>
   );
 }

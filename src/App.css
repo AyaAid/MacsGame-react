@@ -103,3 +103,52 @@ body, html, #root {
   font-size: 1.2rem;
   color: #ccc;
 }
+.game-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100vh;
+  padding: 0 2rem;
+  box-sizing: border-box;
+  background-color: #111;
+}
+
+.scoreboard {
+  font-size: 1.8rem;
+  color: white;
+  font-weight: bold;
+}
+
+.scoreboard.left {
+  text-align: left;
+}
+
+.scoreboard.right {
+  text-align: right;
+}
+
+.screen {
+  display: flex;
+  width: 60%;
+  height: 100%;
+  cursor: default;
+}
+
+.column {
+  flex: 1;
+  border: 1px solid #333;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.icon {
+  font-size: 5rem;
+  user-select: none;
+}
+
+.score {
+  margin-top: 1rem;
+  color: #ccc;
+}
