@@ -18,8 +18,8 @@ function App() {
 
 function Game() {
   const icons = {
-    same: '🍎',
-    different: '🍌',
+    same: '😇',
+    different: '😈',
   };
 
   const messages = useMQTT();
