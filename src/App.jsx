@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import './App.css';
+import useMQTT from './hooks/useMQTT';
 
 function App() {
   const [isPlaying, setIsPlaying] = useState(false);
@@ -23,6 +24,7 @@ function Game() {
 
   const [differentIndex, setDifferentIndex] = useState(Math.floor(Math.random() * 3));
   const [positions, setPositions] = useState([0, 1, 2]);
+  const messages = useMQTT();
 
   const handleClick = () => {
     let newDifferentIndex;
@@ -42,6 +44,9 @@ function Game() {
         <div key={i} className="column">
           <span className="icon">
             {pos === differentIndex ? icons.different : icons.same}
+          </span>
+          <span className="score">
+            {messages[`macs/score/target1`]}
           </span>
         </div>
       ))}
