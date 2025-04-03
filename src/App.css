@@ -1,42 +1,99 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap');
+
+body, html, #root {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+.screen {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  cursor: pointer;
 }
 
-@keyframes logo-spin {
+.column {
+  flex: 1;
+  border: 1px solid #ccc;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.icon {
+  font-size: 5rem;
+  user-select: none;
+}
+
+body, html, #root {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  font-family: 'Orbitron', sans-serif;
+  background: black;
+  color: white;
+}
+
+.menu-screen {
+  height: 100vh;
+  width: 100vw;
+  background: linear-gradient(135deg, #0d0d0d, #1a1a1a);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 3rem;
+  animation: fadeIn 1s ease-in-out forwards;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.title {
+  font-size: 5rem;
+  font-weight: bold;
+  letter-spacing: 10px;
+  color: #ff3c3c;
+  text-shadow: 0 0 20px #ff3c3c, 0 0 40px #ff3c3c88;
+  animation: glowTitle 2s ease-in-out infinite alternate;
+}
+
+@keyframes glowTitle {
   from {
-    transform: rotate(0deg);
+    text-shadow: 0 0 10px #ff3c3c, 0 0 20px #ff3c3c44;
   }
   to {
-    transform: rotate(360deg);
+    text-shadow: 0 0 25px #ff3c3c, 0 0 50px #ff3c3caa;
   }
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+.start-button {
+  padding: 1.2rem 2.5rem;
+  font-size: 1.5rem;
+  font-weight: bold;
+  background: transparent;
+  border: 3px solid #ff3c3c;
+  color: #ff3c3c;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0 0 10px #ff3c3c55;
 }
 
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
+.start-button:hover {
+  background-color: #ff3c3c;
+  color: black;
+  transform: scale(1.05);
+  box-shadow: 0 0 20px #ff3c3caa;
 }
