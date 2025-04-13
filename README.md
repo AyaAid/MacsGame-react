@@ -27,10 +27,10 @@ MACS GAME est un **jeu de tir physique connecté** :
 ```git clone https://github.com/AyaAid/MacsGame-react.git ```
 ```cd MacsGame-react```
 
-###2. Installer les dépendances
+### 2. Installer les dépendances
 ```npm install```
 
-###3. Lancer le projet localement
+### 3. Lancer le projet localement
 ```npm run dev```
 
 ---
