@@ -1,12 +1,38 @@
-# React + Vite
+# 🎯 MACS Game - Frontend (React)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Bienvenue dans le frontend du projet **MACS GAME** !
 
-Currently, two official plugins are available:
+MACS GAME est un projet IoT interactif combinant **tir IR**, **détection temps réel** et **affichage dynamique** via MQTT. Le jeu repose sur un pistolet connecté et **3 cibles physiques**. Le but : viser et tirer sur la **bonne cible** indiquée à l'écran en temps réel.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## Expanding the ESLint configuration
+## 🚀 À propos du projet
 
-If you are developing a production application, we recommend using TypeScript and enable type-aware lint rules. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+MACS GAME est un **jeu de tir physique connecté** :
+
+- Les joueurs utilisent un **pistolet** IR pour tirer sur des **cibles physiques**.
+- Le **backend** traite les tirs et envoie les informations via MQTT.
+- Le **frontend React** affiche en temps réel :
+  - Quelle cible est la bonne 
+  - Les mauvaises cibles 
+  - Le score cumulé de chaque joueur (P1 / P2)
+
+> Le frontend est abonné aux topics MQTT publiés par le backend.
+
+---
+
+## 📦 Installation
+
+### 1. Cloner le repo
+```git clone https://github.com/AyaAid/MacsGame-react.git ```
+```cd MacsGame-react```
+
+###2. Installer les dépendances
+```npm install```
+
+###3. Lancer le projet localement
+```npm run dev```
+
+---
+
+Développé par Aya AIDOUNI, Celian LOISEL, Mattéo LAMARDELLE et Sacha HAREL
